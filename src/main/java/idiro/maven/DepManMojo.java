@@ -1,6 +1,11 @@
 package idiro.maven;
 
 import java.io.File;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -76,8 +81,14 @@ public class DepManMojo extends AbstractMojo {
 					if(System.getProperty(nodeName) != null){
 						getLog().info(nodeName+": change value to "+System.getProperty(nodeName));
 						nNode.setTextContent(System.getProperty(nodeName));
+						project.getProperties().setProperty(nodeName,System.getProperty(nodeName));
 					}
 				}
+			}
+			nList = doc.getElementsByTagName("version");
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				Node nNode = nList.item(temp);
+				nNode.setTextContent(replace(nNode.getTextContent()));
 			}
 			
 			// write the content into xml file
@@ -92,5 +103,21 @@ public class DepManMojo extends AbstractMojo {
 			return null;
 		}
 		return ans;
+	}
+	
+	public String replace(String content){
+		if(!content.contains("$")){
+			return content;
+		}
+		Iterator<Object> itProj = project.getProperties().keySet().iterator();
+		while(itProj.hasNext()){
+			Object cur = itProj.next();
+			try{
+				content = content.replaceAll(Pattern.quote("${"+cur+"}"),replace(project.getProperties().getProperty(cur.toString())));
+			}catch(Exception e){
+				getLog().error("Fail replacing in "+content+" with "+project.getProperties().getProperty(cur.toString()),e);
+			}
+		}
+		return content;
 	}
 }
