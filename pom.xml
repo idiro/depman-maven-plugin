@@ -9,57 +9,31 @@
     <name>Running Time Version Replacement</name>
 
     <distributionManagement>
-          <repository>
-              <id>internal</id>
-              <name>Internal Release Repository</name>
-              <url>scp://dev.local.net/var/www/html/apache-archiva-1.3.6/data/repositories/internal</url>
-          </repository>
-    
-          <snapshotRepository>
-              <id>snapshots</id>
-              <name>Internal Snapshot Repository</name>
-              <url>scp://dev.local.net/var/www/html/apache-archiva-1.3.6/data/repositories/snapshots</url>
-          </snapshotRepository>
-        <site>
-            <id>ns.local.net</id>
-            <url>scp://dev.local.net/data/html/idiro-hadoop</url>
-        </site>
-    </distributionManagement>
- 
-    <dependencies>
-	<dependency>
-	    <groupId>org.apache.maven</groupId>
-	    <artifactId>maven-plugin-api</artifactId>
-	    <version>2.0</version>
-	</dependency>
+	<repository>
+	    <id>internal</id>
+	    <name>Internal Release Repository</name>
+	    <url>scp://dev.local.net/var/www/html/apache-archiva-1.3.6/data/repositories/internal</url>
+	</repository>
 
-	<dependency>
-	    <groupId>org.apache.maven.plugin-tools</groupId>
-	    <artifactId>maven-plugin-annotations</artifactId>
-	    <version>3.4</version>
-	    <scope>provided</scope>
-	</dependency>
-	<dependency>
-    <groupId>org.apache.maven</groupId>
-    <artifactId>maven-artifact</artifactId>
-    <version>2.0</version>
-    <scope>compile</scope>
-</dependency>
-<dependency>
-    <groupId>org.apache.maven</groupId>
-    <artifactId>maven-project</artifactId>
-    <version>2.0</version>
-    <scope>compile</scope>
-</dependency>
-    </dependencies>
+	<snapshotRepository>
+	    <id>snapshots</id>
+	    <name>Internal Snapshot Repository</name>
+	    <url>scp://dev.local.net/var/www/html/apache-archiva-1.3.6/data/repositories/snapshots</url>
+	</snapshotRepository>
+	<site>
+	    <id>ns.local.net</id>
+	    <url>scp://dev.local.net/data/html/idiro-hadoop</url>
+	</site>
+    </distributionManagement>
+
     <build>
 	<extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>1.0</version>
-            </extension>
-        </extensions>
+	    <extension>
+		<groupId>org.apache.maven.wagon</groupId>
+		<artifactId>wagon-ssh</artifactId>
+		<version>1.0</version>
+	    </extension>
+	</extensions>
 
 	<plugins>
 	    <plugin>
@@ -82,4 +56,31 @@
 	    </plugin>
 	</plugins>
     </build>
+
+    <dependencies>
+	<dependency>
+	    <groupId>org.apache.maven</groupId>
+	    <artifactId>maven-plugin-api</artifactId>
+	    <version>2.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.maven.plugin-tools</groupId>
+	    <artifactId>maven-plugin-annotations</artifactId>
+	    <version>3.4</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.maven</groupId>
+	    <artifactId>maven-artifact</artifactId>
+	    <version>2.0</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.maven</groupId>
+	    <artifactId>maven-project</artifactId>
+	    <version>2.0</version>
+	    <scope>compile</scope>
+	</dependency>
+    </dependencies>
 </project>
