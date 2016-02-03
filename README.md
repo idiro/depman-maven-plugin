@@ -1,7 +1,7 @@
 # depman-maven-plugin
 Maven plugin for linking the jar with the compiled dependencies instead of the default one.
 
-This project have been build as a work-around for a dependency issue related to maven. 
+This project have been built as a work-around for a dependency issue related to maven. 
 If somebody knows a better method, I would be the first one interested.
 
 Problem
